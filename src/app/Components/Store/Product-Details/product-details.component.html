@@ -1,0 +1,17 @@
+<!-- Product Cards -->
+<div class="product-container">
+  <div class="card" ProductCard BGColor="lightgray">
+    <img src="{{ product?.img }}" />
+    <h2>Product Name: {{ product?.name }}</h2>
+    <h4>Quantity Availabe: {{ product?.quantity }}</h4>
+    <h4>Price: {{ product?.price | currency }}</h4>
+    <button class="btn btn-success">Add to Cart</button>
+  </div>
+  <!-- <div id="move">
+    <button class="btn btn-light" [disabled]="currentProductID==productList[0].id"  (click)="getPrevProduct()">&laquo; Previous</button>
+    <button class="btn btn-light" [disabled]="currentProductID==productList[numberOfProducts-1].id" (click)="getNextProduct()">Next &raquo;</button>
+  </div> -->
+  <button type="button" class="btn btn-secondary" (click)="goBack()">
+    Go Back
+  </button>
+</div>

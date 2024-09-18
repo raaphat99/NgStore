@@ -1,0 +1,7 @@
+<h2>We hava special offers for you today.</h2>
+<div *ngFor="let ad of advertisements">
+    <h4>{{ad}}</h4>
+</div>
+<button class="btn btn-success" [routerLink]="['/products']" (click)="validateAccess()"> 
+    Go to our store
+  </button>

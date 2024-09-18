@@ -1,0 +1,97 @@
+<div>
+  <img [src]="store.logo" alt="Amazon Logo" />
+  <h3 *ngIf="discount != 'No Discount'">
+    We offer an explicit discount of {{ discount }}
+  </h3>
+</div>
+
+<select
+  class="form-select form-select-lg mb-3"
+  aria-label=".form-select-lg example"
+  [(ngModel)]="selectedCategoryID"
+>
+  <option value="0" selected>All</option>
+  <option *ngFor="let category of categoryList" value="{{ category.id }}">
+    {{ category.name }}
+  </option>
+</select>
+
+<!-- For Test [to be removed] -->
+<!-- <p>Selected Category ID: {{selectedCategoryID}}</p> -->
+
+<div class="form-group">
+  <label>Username</label>
+  <input type="text" class="form-control" [(ngModel)]="clientName" />
+</div>
+<br />
+<div class="form-group">
+  <label>National ID:</label>
+  <input type="text" class="form-control" [(ngModel)]="nationalID" />
+  <p>Date of birth: {{ nationalID | nationalIDToBirthDate }}</p>
+</div>
+<div class="form-group">
+  <label>Credit Card Number:</label>
+  <input type="text" class="form-control" [(ngModel)]="creditCardNumber" />
+  <p>Formatted Credit Card Number: {{ creditCardNumber | creditCard }}</p>
+</div>
+
+<app-products
+  #productsComponentRef
+  [categoryID]="selectedCategoryID"
+  (amountChanged)="amountChangedHandler($event)"
+></app-products>
+
+<div
+  class="bd-example"
+  id="table-of-products"
+  *ngIf="productsComponentRef.addItemToCart"
+>
+  <div class="alert alert-info" role="alert">Your Cart</div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">NO.</th>
+        <th scope="col">Name</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Unit Price</th>
+        <th scope="col">Total Price</th>
+        <th scope="col">Delete Item</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let item of this.shoppingCartItems; let i = index">
+      <tr>
+        <td>{{ i + 1 }}</td>
+        <td>{{ item.prdName }}</td>
+        <td>{{ item.selectedQuantity }}</td>
+        <td>{{ item.unitPrice | currency }}</td>
+        <td>{{ item.totalPriceForOneItem | currency }}</td>
+        <td>
+          <button
+            class="btn btn-danger"
+            (click)="
+              deleteItemFromCart(
+                item.prdID,
+                item.selectedQuantity,
+                item.totalPriceForOneItem
+              )
+            "
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div>
+    <p id="total-price">
+      Total Price: {{ productsComponentRef.totalPriceForAllItems | currency }}
+    </p>
+    <button class="btn btn-success" (click)="purchase()">Purchase</button>
+  </div>
+</div>
+
+<div *ngIf="isPurchased">
+  <p>Thanks for purchasing from our store {{ clientName }}!</p>
+  <p>You purchased this item on {{ purchaseDate | date : "medium" }}</p>
+</div>
+

@@ -1,0 +1,228 @@
+<div class="container">
+  <form [formGroup]="userRegistrationForm" (ngSubmit)="onSubmit()" novalidate>
+    <div class="form-group">
+      <label for="fullName">Full Name</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Enter full name"
+        name="fullName"
+        formControlName="fullName"
+      />
+      <div *ngIf="!fullName.valid && (fullName.dirty || fullName.touched)">
+        <div class="alert alert-warning" *ngIf="fullName?.errors?.required">
+          Full Name is required.
+        </div>
+        <div class="alert alert-warning" *ngIf="fullName?.errors?.minlength">
+          Full Name must be at least 5 characters.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        type="email"
+        class="form-control"
+        aria-describedby="emailHelp"
+        placeholder="Enter email"
+        name="email"
+        formControlName="email"
+      />
+      <small id="emailHelp" class="form-text text-muted"
+        >We'll never share your email with anyone else.</small
+      >
+      <div *ngIf="!email.valid && (email.dirty || email.touched)">
+        <div class="alert alert-warning" *ngIf="email?.errors?.required">
+          Email address is required.
+        </div>
+        <div class="alert alert-warning" *ngIf="email?.errors?.email">
+          Please enter a valid email. (ex: test@test.com)
+        </div>
+        <div class="alert alert-warning" *ngIf="email?.errors?.alreadyExist">
+          Email is already existed.
+        </div>
+      </div>
+    </div>
+
+    <!-- Phone Number Array -->
+    <div formArrayName="phoneNumber">
+      <div
+        class="form-group"
+        *ngFor="let control of phoneNumber.controls; let cntIndex = index"
+      >
+        <label for="phoneNumber{{ cntIndex }}"
+          >Phone no.{{ cntIndex + 1 }}</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter phone number"
+          name="phoneNumber{{ cntIndex }}"
+          formControlName="{{ cntIndex }}"
+        />
+        <button
+          type="button"
+          class="btn btn-primary"
+          [hidden]="!(cntIndex == phoneNumber.length - 1)"
+          (click)="addPhoneNumber()"
+        >
+          Add
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger"
+          [hidden]="cntIndex == 0"
+          [disabled]="!(cntIndex == phoneNumber.length - 1)"
+          (click)="removePhoneNumber(cntIndex)"
+        >
+          Remove
+        </button>
+        <div *ngIf="!control.valid && (control.dirty || control.touched)">
+          <!-- Property 'required' here comes from an index signature, so it must be accessed with ['required'] -->
+          <div
+            class="alert alert-warning"
+            *ngIf="control?.errors?.['required']"
+          >
+            Phone Number is required.
+          </div>
+          <div class="alert alert-warning" *ngIf="control?.errors?.['pattern']">
+            Please enter a valid phone number. (ex: 01116172997)
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div formGroupName="address" class="container">
+      <div class="form-group">
+        <label for="city">City</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter city"
+          name="city"
+          formControlName="city"
+        />
+        <div *ngIf="!city.valid && city.touched">
+          <div class="alert alert-warning" *ngIf="city?.errors?.required">
+            This field is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="street">Street</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter street"
+          name="street"
+          formControlName="street"
+        />
+        <div *ngIf="!street.valid && street.touched">
+          <div class="alert alert-warning" *ngIf="street?.errors?.required">
+            This field is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="postalCode">Postal Code</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter postal code"
+          name="postalCode"
+          formControlName="postalCode"
+        />
+      </div>
+      <div *ngIf="!postalCode.valid && postalCode.touched">
+        <div class="alert alert-warning" *ngIf="postalCode?.errors?.required">
+          This field is required.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        name="password"
+        placeholder="password"
+        formControlName="password"
+      />
+      <div *ngIf="!password.valid && (password.dirty || password.touched)">
+        <div class="alert alert-warning" *ngIf="password?.errors?.required">
+          Password is required.
+        </div>
+        <div class="alert alert-warning" *ngIf="password?.errors?.minlength">
+          Password must be at least 6 characters.
+        </div>
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <label for="confirmPassword">Password Confimation</label>
+      <input
+        type="password"
+        class="form-control"
+        name="confirmPassword"
+        placeholder="Confirm password"
+        formControlName="confirmPassword"
+      />
+      <div *ngIf="(!confirmPassword.valid || userRegistrationForm?.errors?.noMatch) && (confirmPassword.dirty || confirmPassword.touched)">
+        <div class="alert alert-warning" *ngIf="confirmPassword?.errors?.required">
+          Password confirmation is required.
+        </div>
+        <div class="alert alert-warning" *ngIf="confirmPassword?.errors?.minlength">
+          Password confirmation must be at least 6 characters.
+        </div>
+        <div class="alert alert-warning" *ngIf="userRegistrationForm?.errors?.noMatch">
+            Password confirmation doesn't match the entered password.
+        </div>
+      </div>
+    </div>
+
+    <div class="radio">
+      <label for="deliveryOptions">Delivery Options </label>
+      <div>
+        <input
+          type="radio"
+          value="any"
+          name="deliveryOptions"
+          formControlName="deliveryOptions"
+        />
+        Any day
+      </div>
+      <div>
+        <input
+          type="radio"
+          value="specific"
+          name="deliveryOptions"
+          formControlName="deliveryOptions"
+        />
+        Specific day
+        <div class="form-group" *ngIf="specificDeliveryDay">
+            <input
+            type="date"
+            class="form-control"
+            name="selectedDay"
+            formControlName="selectedDay"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!userRegistrationForm.valid"
+      >
+        Register
+      </button>
+    </div>
+  </form>
+</div>

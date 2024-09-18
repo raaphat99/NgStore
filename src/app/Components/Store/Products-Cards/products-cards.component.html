@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row">
+        <div class="col" *ngFor="let product of products">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="https://picsum.photos/200" alt="Card image cap">
+                <div class="card-body">
+                  <h3 class="card-title">Name: {{ product.name }}</h3>
+                  <p class="card-text">Describtion: Lorem ipsum dolor sit amet consectetur adipisicing.</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">Color: {{ product.color }}</li>
+                  <li class="list-group-item">Pantone value: {{ product.pantone_value }}</li>
+                  <li class="list-group-item">Year of production: {{ product.year }}</li>
+                </ul>
+              </div>
+        </div>
+    </div>
+</div>
+

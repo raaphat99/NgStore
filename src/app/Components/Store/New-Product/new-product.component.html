@@ -1,0 +1,45 @@
+<form
+  method="post"
+  action="/products"
+>
+  <div class="mb-3">
+    <label class="form-label">ID</label>
+    <input type="number" name="id" placeholder="Enter id" class="form-control" [(ngModel)]="product.id" />
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Name</label>
+    <input type="text" name="name" placeholder="Enter name" class="form-control" [(ngModel)]="product.name" />
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Available Quantity</label>
+    <input type="number" name="quantity" placeholder="Enter available quantity" class="form-control" [(ngModel)]="product.quantity" />
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Unit Price</label>
+    <input type="number" name="unitPrice" placeholder="Enter unit price in $" class="form-control" [(ngModel)]="product.price" />
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Image</label>
+    <input type="file" name="image" class="form-control" [(ngModel)]="product.img" />
+  </div>
+
+  <select
+    class="form-select form-select-lg mb-3"
+    aria-label=".form-select-lg example"
+    name="categoryID"
+    [(ngModel)]="product.categoryID"
+  >
+    <option value="0" selected disabled>select category</option>
+    <option
+      *ngFor="let category of recievedCategories"
+      value="{{ category.id }}"
+    >
+      {{ category.name }}
+    </option>
+  </select>
+
+  <div>
+    <button type="button" class="btn btn-primary" *ngIf="insertNew" (click)="insertProduct()">Add Product</button>
+    <button type="button" class="btn btn-primary" *ngIf="!insertNew" (click)="updateProduct()">Update Product</button>
+  </div>
+</form>

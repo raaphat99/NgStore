@@ -1,0 +1,205 @@
+{
+  "products": [
+    {
+      "id": 1001,
+      "name": "Laptop",
+      "quantity": 5,
+      "price": 5000,
+      "amount": 1,
+      "img": "https://picsum.photos/id/8/200",
+      "categoryID": 101
+    },
+    {
+      "id": 1002,
+      "name": "Tablet",
+      "quantity": 10,
+      "price": 3500,
+      "amount": 1,
+      "img": "https://picsum.photos/id/60/200",
+      "categoryID": 101
+    },
+    {
+      "id": 2001,
+      "name": "sneaker",
+      "quantity": 15,
+      "price": 200,
+      "amount": 1,
+      "img": "../../../assets/pexels-ray-piedra-1464625.jpg",
+      "categoryID": 102
+    },
+    {
+      "id": 2002,
+      "name": "Lacoste shirt",
+      "quantity": 20,
+      "price": 750,
+      "amount": 1,
+      "img": "../../../assets/pexels-fahmi-garna-13094146.jpg",
+      "categoryID": 102
+    },
+    {
+      "id": 3001,
+      "name": "Refrigerator",
+      "quantity": 25,
+      "price": 4000,
+      "amount": 1,
+      "img": "../../../assets/nrd-FDQFZHY9iG4-unsplash.jpg",
+      "categoryID": 103
+    },
+    {
+      "id": 3002,
+      "name": "Washing Machine",
+      "quantity": 30,
+      "price": 2500,
+      "amount": 1,
+      "img": "../../../assets/planetcare-5cpBWEl6y6c-unsplash.jpg",
+      "categoryID": 103
+    }
+  ],
+  "categories": [
+    {
+      "id": 101,
+      "name": "Electronic Devices"
+    },
+    {
+      "id": 102,
+      "name": "Clothing, Shoes and Jewelry"
+    },
+    {
+      "id": 103,
+      "name": "Home & Kitchen"
+    }
+  ],
+  "users": [
+    {
+      "id": 1542,
+      "fullName": "Ahmed Raafat Mohamed",
+      "email": "ahmed@gmail.com",
+      "phoneNumber": [
+        "01116172997"
+      ],
+      "address": {
+        "city": "Mansoura",
+        "street": "Taba st",
+        "postalCode": "35511"
+      },
+      "password": "ahmed999",
+      "deliveryOptions": "any",
+      "selectedDay": null
+    },
+    {
+      "id": 8187,
+      "fullName": "Khaled Khalil Kholio",
+      "email": "kholio@gmail.com",
+      "phoneNumber": [
+        "01003288660"
+      ],
+      "address": {
+        "city": "cairo",
+        "street": "Elharam st",
+        "postalCode": "76585"
+      },
+      "password": "kholio1996",
+      "deliveryOptions": "specific",
+      "selectedDay": "03/21/2023"
+    },
+    {
+      "id": 8659,
+      "fullName": "Hossam Gomaa",
+      "email": "hossam@gmail.com",
+      "phoneNumber": [
+        "01223266383"
+      ],
+      "address": {
+        "city": "Aswan",
+        "street": "Elgalaa st",
+        "postalCode": "87456"
+      },
+      "password": "hosso1990",
+      "deliveryOptions": "specific",
+      "selectedDay": "02/15/2023"
+    },
+    {
+      "id": 4641,
+      "fullName": "Ali Aliwa",
+      "email": "ali@gmail.com",
+      "phoneNumber": [
+        "01118156779"
+      ],
+      "address": {
+        "city": "Talkha",
+        "street": "Eltakseem st",
+        "postalCode": "12345"
+      },
+      "password": "alwa1998",
+      "deliveryOptions": "any",
+      "selectedDay": null
+    },
+    {
+      "id": 9876,
+      "fullName": "mohsen",
+      "email": "moha@gmail.com",
+      "phoneNumber": [
+        "01558156779"
+      ],
+      "address": {
+        "city": "Alex",
+        "street": "Miamy",
+        "postalCode": "45678"
+      },
+      "password": "momo1996",
+      "deliveryOptions": "any",
+      "selectedDay": null
+    },
+    {
+      "id": 7654,
+      "fullName": "Eman Elsayed Ali",
+      "email": "emy.gmail.com",
+      "phoneNumber": [
+        "01558195774"
+      ],
+      "address": {
+        "city": "Luxor",
+        "street": "Elgamaa st",
+        "postalCode": "87514"
+      },
+      "password": "emy1772",
+      "deliveryOptions": "specific",
+      "selectedDay": "01/12/2023"
+    },
+    {
+      "fullName": "Lorem Ipsum sit amit",
+      "email": "lorem@gmail.com",
+      "phoneNumber": [
+        "01000552100"
+      ],
+      "address": {
+        "city": "Giza",
+        "postalCode": "91126",
+        "street": "Mohy Eldeen Abu Elezz st"
+      },
+      "password": "lorem0000",
+      "confirmPassword": "lorem0000",
+      "deliveryOptions": "specific",
+      "selectedDay": "2023-06-24",
+      "id": 9877
+    },
+    {
+      "fullName": "Mohamed Hussin Saforii",
+      "email": "safra@gmail.com",
+      "phoneNumber": [
+        "01062154434",
+        "01127386987"
+      ],
+      "address": {
+        "city": "Banha",
+        "postalCode": "87734",
+        "street": "Farouk st"
+      },
+      "password": "safra1998",
+      "confirmPassword": "safra1998",
+      "deliveryOptions": "any",
+      "selectedDay": null,
+      "id": 9878
+    }
+  ]
+}

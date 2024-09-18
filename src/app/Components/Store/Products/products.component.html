@@ -1,0 +1,100 @@
+<!-- <p>Sent Category ID: {{ categoryID }}</p> -->
+<div class="bd-example" id="table-of-products">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">NO.</th>
+        <th scope="col">Name</th>
+        <th scope="col">Image</th>
+        <th scope="col">Quantity Available</th>
+        <th scope="col">Price</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Details</th>
+        <th scope="col">Add</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let product of filteredProducts; let i = index">
+        <!-- Using structural directives is not the best practice in such cases because it keeps removing the DOM and recreating it every single change. And that definetly affects the performance -->
+        <!-- <tr *ngIf="product.categoryID == selectedCategoryID"> -->
+        <!-- <tr *ngIf="product.quantity > 0"
+            [ngStyle]="{
+              'background-color':
+                product.quantity === 1 ? 'orange' : 'lightgray'
+            }"> -->
+        <tr>
+          <td>{{ i + 1 }}</td>
+          <td>{{ product.name }}</td>
+          <td><img src="{{ product.img }}" /></td>
+          <td>{{ product.quantity }}</td>
+          <td>{{ product.price | currency }}</td>
+          <td>
+            <div class="input-group">
+              <span class="input-group-btn"
+                ><button class="btn btn-danger" (click)="decrement(product.id)">
+                  -
+                </button></span
+              >
+              <input
+                type="number"
+                class="form-control input-number"
+                #amount
+                [(ngModel)]="counter"
+                value="{{ product.amount }}"
+                min="1"
+                max="{{ product.quantity }}"
+              />
+              <span class="input-group-btn"
+                ><button class="btn btn-dark" (click)="increment(product.id)">
+                  +
+                </button></span
+              >
+            </div>
+          </td>
+          <td>
+            <button class="btn btn-info" [routerLink]="['/products/details', product.id]">
+              Details
+            </button>
+          </td>
+          <td>
+            <button
+              class="btn btn-success"
+              (click)="addToCart(product.id, amount.value)"
+            >
+              Add
+            </button>
+          </td>
+          <td>
+            <button
+              class="btn btn-secondary"
+              [routerLink]="['/admin/insert-product']"
+              [queryParams]="{ prdID:  product.id}"
+            >
+              Edit
+            </button>
+          </td>
+          <td>
+            <button
+              class="btn btn-danger"
+              (click)="deleteProduct(product.id)"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+    <tfoot *ngIf="failedPurchase">
+      <tr>
+        <td colspan="7">
+          <div class="alert alert-warning" role="alert">
+            The amount of purchased items must be less than or equal to the
+            available quantity!
+          </div>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
